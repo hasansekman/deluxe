@@ -23,9 +23,15 @@ export const SITE = {
       weekend: "Freitag – Samstag: 12:00 – 03:00",
     },
     hoursShort: "Mo–Do & So 12:00–01:00 · Fr–Sa 12:00–03:00",
+    coordinates: {
+      lat: 49.2385633,
+      lng: 8.5092082,
+    },
+    /** Google Business Profile */
+    googlePlaceUrl:
+      "https://www.google.com/maps/place/Deluxe+Shisha+Bar%26Lounge/@49.2385668,8.5066333,17z/data=!4m6!3m5!1s0x4797bbe20aac79cf:0xc308c2954335b9f3!8m2!3d49.2385633!4d8.5092082!16s%2Fg%2F11t6v_47vw",
     /** Google Maps embed query */
-    mapsEmbed:
-      "Weinbrennerstraße+2B,+68753+Waghäusel,+Deutschland",
+    mapsEmbed: "Deluxe+Shisha+Bar%26Lounge@49.2385633,8.5092082",
   },
 } as const;
 
@@ -55,4 +61,13 @@ export function telUrl() {
 /** Opens Instagram DM thread with the lounge (mobile app or web). */
 export function instagramDmUrl() {
   return `https://ig.me/m/${SITE.instagramHandle}`;
+}
+
+export function googleMapsDirectionsUrl() {
+  const { lat, lng } = SITE.location.coordinates;
+  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+}
+
+export function googleMapsEmbedUrl() {
+  return `https://maps.google.com/maps?q=${SITE.location.mapsEmbed}&z=16&ie=UTF8&iwloc=&output=embed`;
 }

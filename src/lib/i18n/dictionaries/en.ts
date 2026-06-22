@@ -114,6 +114,13 @@ export const en: Dictionary = {
     mapTitle: "Map — Deluxe Shisha Bar & Lounge",
     directions: "Get directions",
     whatsapp: "WhatsApp",
+    copyAddress: "Copy address",
+    copyAddressDone: "Copied!",
+    googleReviews: "Google reviews",
+    googleReviewsHint:
+      "See what guests say about us — or leave your own review.",
+    googleReviewsView: "View reviews",
+    googleReviewsWrite: "Review on Google",
     hoursWeekdays: "Monday – Thursday: 12:00 – 01:00",
     hoursWeekend: "Friday – Saturday: 12:00 – 03:00",
     hoursSunday: "Sunday: 12:00 – 01:00",

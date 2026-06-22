@@ -1,8 +1,12 @@
+import { LegalDocument } from "@/components/classic/LegalDocument";
+import { getTermsContent } from "@/lib/legal";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
+const content = getTermsContent("de");
+
 export const metadata = createPageMetadata({
-  title: "AGB",
-  description: "Allgemeine Geschäftsbedingungen der Deluxe Shisha Bar & Lounge.",
+  title: content.title,
+  description: content.intro,
   path: "/legal/terms",
   locale: "de",
 });
@@ -10,11 +14,8 @@ export const metadata = createPageMetadata({
 export default function TermsPage() {
   return (
     <div className="section-padding">
-      <div className="container-site">
-        <h1 className="text-2xl font-semibold text-text md:text-3xl">AGB</h1>
-        <p className="mt-4 text-text-muted">
-          Allgemeine Geschäftsbedingungen — Inhalt folgt.
-        </p>
+      <div className="container-site max-w-3xl">
+        <LegalDocument content={content} />
       </div>
     </div>
   );

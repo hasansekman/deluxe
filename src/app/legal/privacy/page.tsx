@@ -1,8 +1,12 @@
+import { LegalDocument } from "@/components/classic/LegalDocument";
+import { getPrivacyContent } from "@/lib/legal";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
+const content = getPrivacyContent("de");
+
 export const metadata = createPageMetadata({
-  title: "Datenschutz",
-  description: "Datenschutzerklärung der Deluxe Shisha Bar & Lounge.",
+  title: content.title,
+  description: content.intro,
   path: "/legal/privacy",
   locale: "de",
 });
@@ -10,13 +14,8 @@ export const metadata = createPageMetadata({
 export default function PrivacyPage() {
   return (
     <div className="section-padding">
-      <div className="container-site">
-        <h1 className="text-2xl font-semibold text-text md:text-3xl">
-          Datenschutz
-        </h1>
-        <p className="mt-4 text-text-muted">
-          Datenschutzerklärung — Inhalt folgt.
-        </p>
+      <div className="container-site max-w-3xl">
+        <LegalDocument content={content} />
       </div>
     </div>
   );

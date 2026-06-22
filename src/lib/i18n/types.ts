@@ -88,6 +88,12 @@ export type Dictionary = {
     mapTitle: string;
     directions: string;
     whatsapp: string;
+    copyAddress: string;
+    copyAddressDone: string;
+    googleReviews: string;
+    googleReviewsHint: string;
+    googleReviewsView: string;
+    googleReviewsWrite: string;
     hoursWeekdays: string;
     hoursWeekend: string;
     hoursSunday: string;

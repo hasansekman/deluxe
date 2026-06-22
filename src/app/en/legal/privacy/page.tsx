@@ -1,12 +1,12 @@
+import { LegalDocument } from "@/components/classic/LegalDocument";
+import { getPrivacyContent } from "@/lib/legal";
 import { createPageMetadata } from "@/lib/seo/metadata";
-import { getDictionary } from "@/lib/i18n";
-import { SITE } from "@/lib/constants";
 
-const dict = getDictionary("en");
+const content = getPrivacyContent("en");
 
 export const metadata = createPageMetadata({
-  title: dict.legal.privacyTitle,
-  description: `${dict.legal.privacyTitle} — ${SITE.name}.`,
+  title: content.title,
+  description: content.intro,
   path: "/en/legal/privacy",
   locale: "en",
 });
@@ -14,11 +14,8 @@ export const metadata = createPageMetadata({
 export default function EnPrivacyPage() {
   return (
     <div className="section-padding">
-      <div className="container-site">
-        <h1 className="text-2xl font-semibold text-text md:text-3xl">
-          {dict.legal.privacyTitle}
-        </h1>
-        <p className="mt-4 text-text-muted">{dict.legal.privacyBody}</p>
+      <div className="container-site max-w-3xl">
+        <LegalDocument content={content} />
       </div>
     </div>
   );

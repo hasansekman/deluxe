@@ -1,4 +1,13 @@
-export { SITE, NAV_ITEMS, NAV_CTA, whatsappUrl, telUrl, instagramDmUrl } from "./site";
+export {
+  SITE,
+  NAV_ITEMS,
+  NAV_CTA,
+  whatsappUrl,
+  telUrl,
+  instagramDmUrl,
+  googleMapsDirectionsUrl,
+  googleMapsEmbedUrl,
+} from "./site";
 export { IMAGES, IMAGE_ALT, type ImageKey } from "./images";
 export {
   WELCOME_COPY,
