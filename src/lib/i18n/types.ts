@@ -99,6 +99,9 @@ export type Dictionary = {
     hoursSunday: string;
   };
   footer: {
+    navigation: string;
+    contact: string;
+    connect: string;
     privacy: string;
     terms: string;
     call: string;

@@ -205,6 +205,48 @@ body {
   letter-spacing: -0.02em;
 }
 
+.site-footer {
+  overflow: hidden;
+}
+
+.footer-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 100%, rgba(212, 197, 168, 0.07), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 85% 0%, rgba(212, 197, 168, 0.05), transparent 65%);
+}
+
+.footer-column-title {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.footer-link {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  transition: color 0.22s ease;
+}
+
+@media (hover: hover) {
+  .footer-link:hover {
+    color: var(--accent);
+  }
+}
+
+.footer-bottom {
+  border-color: color-mix(in srgb, var(--accent) 10%, var(--border));
+}
+
+[data-theme="light"] .footer-glow {
+  opacity: 0.55;
+}
+
 [data-theme="light"] .smoke-cursor-canvas {
   opacity: 0.45;
 }

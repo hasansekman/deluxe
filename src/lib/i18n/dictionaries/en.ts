@@ -126,6 +126,9 @@ export const en: Dictionary = {
     hoursSunday: "Sunday: 12:00 – 01:00",
   },
   footer: {
+    navigation: "Navigation",
+    contact: "Contact",
+    connect: "Follow",
     privacy: "Privacy",
     terms: "Terms",
     call: "Call",
