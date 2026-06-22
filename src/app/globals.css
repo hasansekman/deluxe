@@ -259,8 +259,16 @@ body {
   color: var(--accent);
 }
 
-.menu-mobile-tabs {
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 8%, transparent);
+.menu-mobile-nav {
+  border: 1px solid color-mix(in srgb, var(--accent) 12%, var(--border));
+  border-radius: 0.875rem;
+  background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+  padding: 0.875rem;
+}
+
+.menu-mobile-nav .menu-nav-item {
+  padding: 0.625rem 0.875rem;
+  font-size: 0.8125rem;
 }
 
 [data-theme="light"] .footer-glow {

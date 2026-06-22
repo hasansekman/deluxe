@@ -109,6 +109,58 @@ type FeaturedItem = {
   tabLabel: string;
 };
 
+function MenuCategoryNav({
+  menuTabs,
+  activeTab,
+  onSelect,
+  inView,
+  className,
+  label,
+}: {
+  menuTabs: ReturnType<typeof getLocalizedMenuTabs>;
+  activeTab: string | null;
+  onSelect: (tabId: string) => void;
+  inView: boolean;
+  className?: string;
+  label: string;
+}) {
+  return (
+    <nav
+      className={cn("flex flex-col gap-1", className)}
+      role="tablist"
+      aria-label={label}
+    >
+      {menuTabs.map((item, index) => (
+        <button
+          key={item.id}
+          type="button"
+          role="tab"
+          aria-selected={activeTab === item.id}
+          className={cn(
+            "menu-nav-item reveal",
+            inView && "in-view",
+            activeTab === item.id && "menu-nav-item-active"
+          )}
+          style={
+            inView ? { transitionDelay: `${0.12 + index * 0.04}s` } : undefined
+          }
+          onClick={() => onSelect(item.id)}
+        >
+          <span className="flex min-w-0 items-center gap-2">
+            <span className="menu-nav-icon" aria-hidden="true">
+              <MenuTabIcon tabId={item.id} className="h-4 w-4" />
+            </span>
+            <span className="truncate">{item.label}</span>
+          </span>
+          <span className="menu-nav-arrow shrink-0 text-[10px]" aria-hidden="true">
+            →
+          </span>
+        </button>
+      ))}
+    </nav>
+  );
+}
+
 export function MenuSection() {
   const [activeTab, setActiveTab] = useState<string | null>(DEFAULT_TAB);
   const [query, setQuery] = useState("");
@@ -223,11 +275,11 @@ export function MenuSection() {
             >
               <p className="menu-eyebrow">{dict.menu.popular}</p>
               <p className="menu-lead !mt-1 !max-w-md">{dict.menu.popularHint}</p>
-              <ul className="mt-8 flex gap-3 overflow-x-auto pb-2 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:mt-8 lg:flex lg:gap-3 lg:overflow-x-auto lg:pb-2 lg:pt-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
                 {featuredItems.map((item, index) => (
                   <li
                     key={item.name}
-                    className={cn("shrink-0 reveal", inView && "in-view")}
+                    className={cn("min-w-0 reveal lg:shrink-0", inView && "in-view")}
                     style={
                       inView
                         ? { transitionDelay: `${0.08 + index * 0.06}s` }
@@ -237,7 +289,7 @@ export function MenuSection() {
                     <button
                       type="button"
                       onClick={() => jumpToItem(item)}
-                      className="menu-popular-card flex min-w-[148px] flex-col rounded-xl px-4 py-3 text-left"
+                      className="menu-popular-card flex w-full flex-col rounded-xl px-4 py-3 text-left lg:min-w-[148px]"
                     >
                       <span className="menu-popular-icon" aria-hidden="true">
                         <MenuTabIcon tabId={item.tabId} className="h-4 w-4" />
@@ -261,76 +313,32 @@ export function MenuSection() {
               )}
             >
               <aside className="hidden lg:block">
-                <nav
-                  className="sticky top-24 flex flex-col gap-1"
-                  role="tablist"
-                  aria-label={dict.menu.categoriesLabel}
-                >
-                  {menuTabs.map((item, index) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={activeTab === item.id}
-                      className={cn(
-                        "menu-nav-item reveal",
-                        inView && "in-view",
-                        activeTab === item.id && "menu-nav-item-active"
-                      )}
-                      style={
-                        inView
-                          ? { transitionDelay: `${0.12 + index * 0.04}s` }
-                          : undefined
-                      }
-                      onClick={() => selectTab(item.id)}
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="menu-nav-icon" aria-hidden="true">
-                          <MenuTabIcon tabId={item.id} className="h-4 w-4" />
-                        </span>
-                        {item.label}
-                      </span>
-                      <span
-                        className="menu-nav-arrow text-[10px]"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                    </button>
-                  ))}
-                </nav>
+                <MenuCategoryNav
+                  menuTabs={menuTabs}
+                  activeTab={activeTab}
+                  onSelect={selectTab}
+                  inView={inView}
+                  label={dict.menu.categoriesLabel}
+                  className="sticky top-24"
+                />
               </aside>
 
-              <div className="min-w-0">
-                <div
-                  className="menu-mobile-tabs sticky top-[72px] z-30 -mx-[var(--page-margin)] mb-4 border-b border-border/70 bg-bg/92 px-[var(--page-margin)] py-2 backdrop-blur-md lg:hidden"
-                  role="tablist"
-                  aria-label={dict.menu.categoriesLabel}
-                >
-                  <div className="flex gap-2 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                  {menuTabs.map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        role="tab"
-                        aria-selected={activeTab === item.id}
-                        className={cn(
-                          "menu-pill shrink-0 inline-flex items-center gap-1.5",
-                          activeTab === item.id && "menu-pill-active"
-                        )}
-                        onClick={() => selectTab(item.id)}
-                      >
-                        <MenuTabIcon tabId={item.id} className="h-3.5 w-3.5" />
-                        {item.label}
-                      </button>
-                  ))}
-                  </div>
-                </div>
+              <div className="menu-mobile-nav mb-6 lg:hidden">
+                <p className="menu-eyebrow mb-3">{dict.menu.categoriesLabel}</p>
+                <MenuCategoryNav
+                  menuTabs={menuTabs}
+                  activeTab={activeTab}
+                  onSelect={selectTab}
+                  inView={inView}
+                  label={dict.menu.categoriesLabel}
+                />
+              </div>
 
+              <div className="min-w-0">
                 {tab && (
                   <div
                     key={tab.id}
-                    className="menu-panel-enter menu-panel mt-6 lg:mt-0"
+                    className="menu-panel-enter menu-panel lg:mt-0"
                     role="tabpanel"
                   >
                     {tab.categories.map((category) => (
