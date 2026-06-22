@@ -1,8 +1,12 @@
 import { createPageMetadata } from "@/lib/seo/metadata";
+import { getDictionary } from "@/lib/i18n";
+import { SITE } from "@/lib/constants";
+
+const dict = getDictionary("en");
 
 export const metadata = createPageMetadata({
-  title: "Terms & Conditions",
-  description: "Terms and conditions of Deluxe Shisha Bar & Lounge.",
+  title: dict.legal.termsTitle,
+  description: `${dict.legal.termsTitle} — ${SITE.name}.`,
   path: "/en/legal/terms",
   locale: "en",
 });
@@ -12,9 +16,9 @@ export default function EnTermsPage() {
     <div className="section-padding">
       <div className="container-site">
         <h1 className="text-2xl font-semibold text-text md:text-3xl">
-          Terms &amp; Conditions
+          {dict.legal.termsTitle}
         </h1>
-        <p className="mt-4 text-text-muted">Terms and conditions — content to follow.</p>
+        <p className="mt-4 text-text-muted">{dict.legal.termsBody}</p>
       </div>
     </div>
   );

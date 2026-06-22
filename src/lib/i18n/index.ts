@@ -13,3 +13,4 @@ export {
   switchLocalePath,
 } from "./paths";
 export { getLocalizedMenuTabs, getLocalizedTabLabel } from "./menu";
+export { getImageAlt, getAllImageAlts } from "./images";

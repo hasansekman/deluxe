@@ -1,12 +1,17 @@
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 import { SITE } from "@/lib/constants";
 
-export function createLocalBusinessJsonLd() {
+export function createLocalBusinessJsonLd(locale: Locale = "de") {
+  const dict = getDictionary(locale);
+
   return {
     "@context": "https://schema.org",
     "@type": "BarOrPub",
     name: SITE.name,
-    description: SITE.tagline,
-    url: SITE.url,
+    description: dict.hero.tagline,
+    url: locale === "en" ? `${SITE.url}/en` : SITE.url,
+    inLanguage: locale === "en" ? "en-GB" : "de-DE",
     email: SITE.email,
     address: {
       "@type": "PostalAddress",

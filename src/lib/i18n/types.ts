@@ -42,6 +42,7 @@ export type Dictionary = {
   hero: {
     location: string;
     subtitle: string;
+    tagline: string;
     menu: string;
     reserve: string;
   };
@@ -113,6 +114,7 @@ export type Dictionary = {
   };
   whatsapp: {
     message: string;
+    ariaLabel: string;
   };
   legal: {
     privacyTitle: string;

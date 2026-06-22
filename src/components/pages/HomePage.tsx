@@ -7,11 +7,12 @@ import {
   MenuSection,
   ContactSection,
 } from "@/components/classic";
+import type { Locale } from "@/lib/i18n";
 
-export function HomePage() {
+export function HomePage({ locale = "de" }: { locale?: Locale }) {
   return (
     <>
-      <JsonLd />
+      <JsonLd locale={locale} />
       <HeroSection />
       <WelcomeSection />
       <MenuSection />

@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { IMAGES, IMAGE_ALT } from "@/lib/constants";
+import { IMAGES } from "@/lib/constants";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getImageAlt } from "@/lib/i18n";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 
 export function WelcomeSection() {
-  const { dict } = useLocale();
+  const { dict, locale } = useLocale();
   const { ref, inView } = useInView(0.12);
 
   return (
@@ -75,7 +76,7 @@ export function WelcomeSection() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border/80 sm:aspect-[5/4] lg:aspect-[4/5]">
               <Image
                 src={IMAGES.welcome}
-                alt={IMAGE_ALT.welcome}
+                alt={getImageAlt(locale, "welcome")}
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 520px"

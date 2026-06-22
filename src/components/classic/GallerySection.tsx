@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { IMAGES, IMAGE_ALT, type ImageKey } from "@/lib/constants";
+import { IMAGES, type ImageKey } from "@/lib/constants";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getImageAlt } from "@/lib/i18n";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 
 export function GallerySection() {
-  const { dict } = useLocale();
+  const { dict, locale } = useLocale();
   const galleryItems = dict.gallery.items;
   const [lightbox, setLightbox] = useState<number | null>(null);
   const { ref, inView } = useInView<HTMLElement>();
@@ -84,7 +85,7 @@ export function GallerySection() {
                   <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-border bg-surface sm:aspect-[5/4] lg:aspect-[4/5]">
                     <Image
                       src={IMAGES[imageKey]}
-                      alt={IMAGE_ALT[imageKey]}
+                      alt={getImageAlt(locale, imageKey)}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
@@ -158,7 +159,7 @@ export function GallerySection() {
               <Image
                 key={galleryItems[lightbox].imageKey}
                 src={IMAGES[galleryItems[lightbox].imageKey as ImageKey]}
-                alt={IMAGE_ALT[galleryItems[lightbox].imageKey as ImageKey]}
+                alt={getImageAlt(locale, galleryItems[lightbox].imageKey as ImageKey)}
                 fill
                 className="rounded-xl object-contain"
                 sizes="90vw"

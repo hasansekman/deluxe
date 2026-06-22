@@ -2,18 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { IMAGES, IMAGE_ALT, SITE, instagramDmUrl } from "@/lib/constants";
+import { IMAGES, SITE, instagramDmUrl } from "@/lib/constants";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getImageAlt } from "@/lib/i18n";
 import { Logo } from "./Logo";
 
 export function HeroSection() {
-  const { dict, href } = useLocale();
+  const { dict, href, locale } = useLocale();
 
   return (
     <section id="startseite" className="relative flex min-h-[85vh] items-end">
       <Image
         src={IMAGES.hero}
-        alt={IMAGE_ALT.hero}
+        alt={getImageAlt(locale, "hero")}
         fill
         priority
         className="object-cover"
@@ -42,7 +43,7 @@ export function HeroSection() {
         <p className="mt-4 max-w-xl text-lg text-text-muted">
           {dict.hero.subtitle}
         </p>
-        <p className="mt-2 text-sm text-accent">{SITE.tagline}</p>
+        <p className="mt-2 text-sm text-accent">{dict.hero.tagline}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={href("#speisekarte")} className="btn-primary">
             {dict.hero.menu}

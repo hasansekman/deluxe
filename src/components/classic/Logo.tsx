@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import { IMAGES, IMAGE_ALT } from "@/lib/constants";
+import { IMAGES } from "@/lib/constants";
+import { useLocale } from "@/components/providers/LocaleProvider";
+import { getImageAlt } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const VARIANTS = {
@@ -17,11 +21,13 @@ export function Logo({
   variant?: keyof typeof VARIANTS;
   priority?: boolean;
 }) {
+  const { locale } = useLocale();
+
   return (
     <span className={cn("inline-flex shrink-0 items-center", className)}>
       <Image
         src={IMAGES.logo}
-        alt={IMAGE_ALT.logo}
+        alt={getImageAlt(locale, "logo")}
         width={1024}
         height={1024}
         className={VARIANTS[variant]}

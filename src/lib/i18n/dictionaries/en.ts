@@ -33,6 +33,7 @@ export const en: Dictionary = {
     location: "Waghäusel",
     subtitle:
       "Premium shisha and cocktails — stylish ambience late into the night.",
+    tagline: "Premium Shisha · Cocktails · Lounge",
     menu: "Menu",
     reserve: "Reserve",
   },
@@ -139,6 +140,7 @@ export const en: Dictionary = {
   },
   whatsapp: {
     message: "Hello, I'd like to ask about a reservation.",
+    ariaLabel: "Send WhatsApp message",
   },
   legal: {
     privacyTitle: "Privacy Policy",

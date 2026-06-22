@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE, IMAGES } from "@/lib/constants";
-import type { Locale } from "@/lib/i18n";
+import { getDictionary, getImageAlt, type Locale } from "@/lib/i18n";
 
 type PageMeta = {
   title: string;
@@ -20,9 +20,10 @@ export function createPageMetadata({
   locale = "de",
 }: PageMeta): Metadata {
   const url = `${SITE.url}${path}`;
+  const dict = getDictionary(locale);
   const fullTitle =
     path === "" || path === "/" || path === "/en"
-      ? `${SITE.name} — ${SITE.tagline}`
+      ? `${SITE.name} — ${dict.hero.tagline}`
       : `${title} — ${SITE.name}`;
 
   const ogLocale = locale === "en" ? "en_GB" : "de_DE";
@@ -57,7 +58,7 @@ export function createPageMetadata({
           url: ogImage,
           width: 1920,
           height: 1080,
-          alt: `${SITE.name} — Lounge Ambiente`,
+          alt: getImageAlt(locale, "og"),
         },
       ],
     },
