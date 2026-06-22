@@ -50,6 +50,7 @@ export function ContactSection() {
               {dict.contact.hours}
             </p>
             <p className="mt-3 text-sm text-text">{dict.contact.hoursWeekdays}</p>
+            <p className="mt-1 text-sm text-text">{dict.contact.hoursSunday}</p>
             <p className="mt-1 text-sm text-text">{dict.contact.hoursWeekend}</p>
           </div>
         </div>

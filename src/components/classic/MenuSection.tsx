@@ -1,12 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { MagnifyHeading } from "./MagnifyHeading";
 import { POPULAR_MENU_ITEMS } from "@/lib/constants/home";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getLocalizedMenuTabs } from "@/lib/i18n";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 import type { MenuCategory, MenuItem } from "@/lib/constants/deluxe-menu";
+import { MenuCategoryIcon, MenuItemIcon, MenuTabIcon } from "./MenuItemIcon";
 
 const POPULAR_ORDER = [
   "Doppelapfel",
@@ -25,9 +27,13 @@ function itemSlug(name: string) {
 
 function MenuItemRow({
   item,
+  categoryId,
+  tabId,
   popularBadge,
 }: {
   item: MenuItem;
+  categoryId: string;
+  tabId: string;
   popularBadge: string;
 }) {
   const popular = POPULAR_MENU_ITEMS.has(item.name);
@@ -38,6 +44,7 @@ function MenuItemRow({
       className="menu-item scroll-mt-28"
     >
       <div className="menu-row">
+        <MenuItemIcon categoryId={categoryId} tabId={tabId} />
         <div className="menu-row-name min-w-0">
           <span className="inline-flex flex-wrap items-center gap-2">
             <span className="menu-item-name">{item.name}</span>
@@ -60,15 +67,22 @@ function MenuItemRow({
 
 function CategoryBlock({
   category,
+  tabId,
   popularBadge,
 }: {
   category: MenuCategory;
+  tabId: string;
   popularBadge: string;
 }) {
   return (
     <article className="menu-category">
       <header className="menu-category-header">
-        <h3 className="menu-category-title">{category.title}</h3>
+        <div className="flex items-center gap-2">
+          <span className="menu-category-icon" aria-hidden="true">
+            <MenuCategoryIcon categoryId={category.id} tabId={tabId} />
+          </span>
+          <h3 className="menu-category-title">{category.title}</h3>
+        </div>
         {category.subtitle && (
           <p className="menu-category-subtitle">{category.subtitle}</p>
         )}
@@ -79,6 +93,8 @@ function CategoryBlock({
           <MenuItemRow
             key={`${category.id}-${item.name}`}
             item={item}
+            categoryId={category.id}
+            tabId={tabId}
             popularBadge={popularBadge}
           />
         ))}
@@ -128,8 +144,12 @@ export function MenuSection() {
     const q = query.trim().toLowerCase();
     if (!q) return null;
 
-    const hits: { tabLabel: string; category: MenuCategory; item: MenuItem }[] =
-      [];
+    const hits: {
+      tabId: string;
+      tabLabel: string;
+      category: MenuCategory;
+      item: MenuItem;
+    }[] = [];
     for (const t of menuTabs) {
       for (const cat of t.categories) {
         for (const item of cat.items) {
@@ -137,7 +157,12 @@ export function MenuSection() {
             item.name.toLowerCase().includes(q) ||
             item.note?.toLowerCase().includes(q)
           ) {
-            hits.push({ tabLabel: t.label, category: cat, item });
+            hits.push({
+              tabId: t.id,
+              tabLabel: t.label,
+              category: cat,
+              item,
+            });
           }
         }
       }
@@ -170,7 +195,7 @@ export function MenuSection() {
 
       <div className="container-site relative">
         <header className={cn("reveal", inView && "in-view")}>
-          <h2 className="menu-heading">{dict.menu.title}</h2>
+          <MagnifyHeading>{dict.menu.title}</MagnifyHeading>
           <p className="menu-lead">{dict.menu.subtitle}</p>
         </header>
 
@@ -214,7 +239,10 @@ export function MenuSection() {
                       onClick={() => jumpToItem(item)}
                       className="menu-popular-card flex min-w-[148px] flex-col rounded-xl px-4 py-3 text-left"
                     >
-                      <span className="text-sm font-medium text-text">
+                      <span className="menu-popular-icon" aria-hidden="true">
+                        <MenuTabIcon tabId={item.tabId} className="h-4 w-4" />
+                      </span>
+                      <span className="mt-2 text-sm font-medium text-text">
                         {item.name}
                       </span>
                       <span className="mt-1 text-[10px] uppercase tracking-wide text-text-subtle">
@@ -256,7 +284,12 @@ export function MenuSection() {
                       }
                       onClick={() => selectTab(item.id)}
                     >
-                      <span>{item.label}</span>
+                      <span className="flex items-center gap-2">
+                        <span className="menu-nav-icon" aria-hidden="true">
+                          <MenuTabIcon tabId={item.id} className="h-4 w-4" />
+                        </span>
+                        {item.label}
+                      </span>
                       <span
                         className="menu-nav-arrow text-[10px]"
                         aria-hidden="true"
@@ -275,19 +308,20 @@ export function MenuSection() {
                   aria-label={dict.menu.categoriesLabel}
                 >
                   {menuTabs.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={activeTab === item.id}
-                      className={cn(
-                        "menu-pill shrink-0",
-                        activeTab === item.id && "menu-pill-active"
-                      )}
-                      onClick={() => selectTab(item.id)}
-                    >
-                      {item.label}
-                    </button>
+                      <button
+                        key={item.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={activeTab === item.id}
+                        className={cn(
+                          "menu-pill shrink-0 inline-flex items-center gap-1.5",
+                          activeTab === item.id && "menu-pill-active"
+                        )}
+                        onClick={() => selectTab(item.id)}
+                      >
+                        <MenuTabIcon tabId={item.id} className="h-3.5 w-3.5" />
+                        {item.label}
+                      </button>
                   ))}
                 </div>
 
@@ -301,6 +335,7 @@ export function MenuSection() {
                       <CategoryBlock
                         key={category.id}
                         category={category}
+                        tabId={tab.id}
                         popularBadge={dict.menu.popularBadge}
                       />
                     ))}
@@ -319,14 +354,19 @@ export function MenuSection() {
               </p>
             ) : (
               <div className="menu-search-results">
-                {searchResults.map(({ tabLabel, category, item }) => (
-                  <div key={`${category.id}-${item.name}`} className="menu-search-hit">
+                {searchResults.map(({ tabId, tabLabel, category, item }) => (
+                  <div
+                    key={`${category.id}-${item.name}`}
+                    className="menu-search-hit"
+                  >
                     <p className="menu-search-hit-label">
                       {tabLabel} · {category.title}
                     </p>
                     <ul>
                       <MenuItemRow
                         item={item}
+                        categoryId={category.id}
+                        tabId={tabId}
                         popularBadge={dict.menu.popularBadge}
                       />
                     </ul>

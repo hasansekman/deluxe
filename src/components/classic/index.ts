@@ -13,3 +13,5 @@ export { SkipLink } from "./SkipLink";
 export { LocaleSwitcher } from "./LocaleSwitcher";
 export { ThemeToggle } from "./ThemeToggle";
 export { Logo } from "./Logo";
+export { MenuItemIcon } from "./MenuItemIcon";
+export { WelcomeModal } from "./WelcomeModal";

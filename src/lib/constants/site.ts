@@ -18,9 +18,10 @@ export const SITE = {
     country: "Deutschland",
     hours: {
       weekdays: "Montag – Donnerstag: 12:00 – 01:00",
+      sunday: "Sonntag: 12:00 – 01:00",
       weekend: "Freitag – Samstag: 12:00 – 03:00",
     },
-    hoursShort: "Mo–Do 12:00–01:00 · Fr–Sa 12:00–03:00",
+    hoursShort: "Mo–Do & So 12:00–01:00 · Fr–Sa 12:00–03:00",
     /** Google Maps embed query */
     mapsEmbed:
       "Weinbrennerstraße+2B,+68753+Waghäusel,+Deutschland",

@@ -32,6 +32,7 @@ export type Dictionary = {
     mobileLabel: string;
   };
   banner: {
+    openSunday: string;
     closedSunday: string;
     openWeekday: string;
     closedWeekday: string;
@@ -89,6 +90,7 @@ export type Dictionary = {
     whatsapp: string;
     hoursWeekdays: string;
     hoursWeekend: string;
+    hoursSunday: string;
   };
   footer: {
     privacy: string;
@@ -121,5 +123,15 @@ export type Dictionary = {
     privacyBody: string;
     termsTitle: string;
     termsBody: string;
+  };
+  welcomeModal: {
+    dialogLabel: string;
+    title: string;
+    subtitle: string;
+    language: string;
+    theme: string;
+    dark: string;
+    light: string;
+    continue: string;
   };
 };

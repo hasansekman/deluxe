@@ -92,7 +92,7 @@ export function SmokeCursor() {
           p.size
         );
         gradient.addColorStop(0, `rgba(245, 240, 232, ${alpha})`);
-        gradient.addColorStop(0.45, `rgba(201, 168, 76, ${alpha * 0.35})`);
+        gradient.addColorStop(0.45, `rgba(212, 197, 168, ${alpha * 0.35})`);
         gradient.addColorStop(1, "rgba(245, 240, 232, 0)");
 
         ctx.fillStyle = gradient;

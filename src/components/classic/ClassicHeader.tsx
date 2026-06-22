@@ -19,7 +19,7 @@ export function ClassicHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md">
       <div className="container-site flex h-[72px] items-center justify-between gap-3">
         <Link href={home("#startseite")} onClick={() => setOpen(false)}>
-          <Logo />
+          <Logo priority />
         </Link>
 
         <nav

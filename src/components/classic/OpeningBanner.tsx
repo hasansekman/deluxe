@@ -1,8 +1,20 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import type { Dictionary } from "@/lib/i18n";
+
+function subscribeNoop() {
+  return () => {};
+}
+
+function getClientSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 function isOpenNow(banner: Dictionary["banner"]): { open: boolean; label: string } {
   const now = new Date();
@@ -11,7 +23,12 @@ function isOpenNow(banner: Dictionary["banner"]): { open: boolean; label: string
   const openAt = 12 * 60;
 
   if (day === 0) {
-    return { open: false, label: banner.closedSunday };
+    const closeAt = 1 * 60;
+    const open = minutes >= openAt || minutes < closeAt;
+    return {
+      open,
+      label: open ? banner.openSunday : banner.closedSunday,
+    };
   }
 
   if (day >= 1 && day <= 4) {
@@ -37,7 +54,19 @@ function isOpenNow(banner: Dictionary["banner"]): { open: boolean; label: string
 
 export function OpeningBanner() {
   const { dict } = useLocale();
-  const status = useMemo(() => isOpenNow(dict.banner), [dict.banner]);
+  const isClient = useSyncExternalStore(
+    subscribeNoop,
+    getClientSnapshot,
+    getServerSnapshot
+  );
+
+  const status = useMemo(
+    () =>
+      isClient
+        ? isOpenNow(dict.banner)
+        : { open: false, label: dict.banner.hoursShort },
+    [isClient, dict.banner]
+  );
 
   return (
     <div

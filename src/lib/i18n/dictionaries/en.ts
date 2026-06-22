@@ -22,12 +22,13 @@ export const en: Dictionary = {
     mobileLabel: "Mobile navigation",
   },
   banner: {
-    closedSunday: "Closed on Sundays",
+    openSunday: "Open now · Sun until 01:00",
+    closedSunday: "Closed · Sun 12:00–01:00",
     openWeekday: "Open now · Mon–Thu until 01:00",
     closedWeekday: "Closed · Mon–Thu 12:00–01:00",
     openWeekend: "Open now · Fri–Sat until 03:00",
     closedWeekend: "Closed · Fri–Sat 12:00–03:00",
-    hoursShort: "Mon–Thu 12:00–01:00 · Fri–Sat 12:00–03:00",
+    hoursShort: "Mon–Thu & Sun 12:00–01:00 · Fri–Sat 12:00–03:00",
   },
   hero: {
     location: "Waghäusel",
@@ -115,6 +116,7 @@ export const en: Dictionary = {
     whatsapp: "WhatsApp",
     hoursWeekdays: "Monday – Thursday: 12:00 – 01:00",
     hoursWeekend: "Friday – Saturday: 12:00 – 03:00",
+    hoursSunday: "Sunday: 12:00 – 01:00",
   },
   footer: {
     privacy: "Privacy",
@@ -147,5 +149,15 @@ export const en: Dictionary = {
     privacyBody: "Privacy policy — content to follow.",
     termsTitle: "Terms & Conditions",
     termsBody: "Terms and conditions — content to follow.",
+  },
+  welcomeModal: {
+    dialogLabel: "Welcome to Deluxe",
+    title: "Welcome",
+    subtitle: "Choose language and theme — or jump straight in.",
+    language: "Language",
+    theme: "Theme",
+    dark: "Dark",
+    light: "Light",
+    continue: "Continue",
   },
 };

@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
 } from "react";
 
 export type Theme = "dark" | "light";
@@ -21,6 +21,17 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const STORAGE_KEY = "deluxe-theme";
 
+const themeListeners = new Set<() => void>();
+
+function emitThemeChange() {
+  themeListeners.forEach((listener) => listener());
+}
+
+function subscribeTheme(listener: () => void) {
+  themeListeners.add(listener);
+  return () => themeListeners.delete(listener);
+}
+
 function readStoredTheme(): Theme {
   if (typeof window === "undefined") return "dark";
   try {
@@ -32,32 +43,40 @@ function readStoredTheme(): Theme {
   return "dark";
 }
 
+function getThemeSnapshot(): Theme {
+  return readStoredTheme();
+}
+
+function getServerThemeSnapshot(): Theme {
+  return "dark";
+}
+
 function applyTheme(theme: Theme) {
   document.documentElement.setAttribute("data-theme", theme);
   document.documentElement.style.colorScheme = theme;
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(readStoredTheme);
+  const theme = useSyncExternalStore(
+    subscribeTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot
+  );
 
   useEffect(() => {
     applyTheme(theme);
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {
-    setThemeState(next);
     localStorage.setItem(STORAGE_KEY, next);
     applyTheme(next);
+    emitThemeChange();
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      localStorage.setItem(STORAGE_KEY, next);
-      applyTheme(next);
-      return next;
-    });
-  }, []);
+    const next = readStoredTheme() === "dark" ? "light" : "dark";
+    setTheme(next);
+  }, [setTheme]);
 
   const value = useMemo(
     () => ({ theme, setTheme, toggleTheme }),

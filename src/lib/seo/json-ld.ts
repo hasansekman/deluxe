@@ -23,7 +23,13 @@ export function createLocalBusinessJsonLd(locale: Locale = "de") {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        dayOfWeek: [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+        ],
         opens: "12:00",
         closes: "01:00",
       },

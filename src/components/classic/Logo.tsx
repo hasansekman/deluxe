@@ -7,7 +7,7 @@ import { getImageAlt } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const VARIANTS = {
-  sm: "h-10 w-auto sm:h-11",
+  sm: "h-[58px] w-auto max-h-[64px] sm:h-16",
   md: "h-24 w-auto",
   lg: "h-36 w-auto max-w-[240px] sm:h-44 sm:max-w-[300px]",
 } as const;
