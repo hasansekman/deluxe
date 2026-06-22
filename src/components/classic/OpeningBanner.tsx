@@ -1,71 +1,21 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import type { Dictionary } from "@/lib/i18n";
-
-function subscribeNoop() {
-  return () => {};
-}
-
-function getClientSnapshot() {
-  return true;
-}
-
-function getServerSnapshot() {
-  return false;
-}
-
-function isOpenNow(banner: Dictionary["banner"]): { open: boolean; label: string } {
-  const now = new Date();
-  const day = now.getDay();
-  const minutes = now.getHours() * 60 + now.getMinutes();
-  const openAt = 12 * 60;
-
-  if (day === 0) {
-    const closeAt = 1 * 60;
-    const open = minutes >= openAt || minutes < closeAt;
-    return {
-      open,
-      label: open ? banner.openSunday : banner.closedSunday,
-    };
-  }
-
-  if (day >= 1 && day <= 4) {
-    const closeAt = 1 * 60;
-    const open = minutes >= openAt || minutes < closeAt;
-    return {
-      open,
-      label: open ? banner.openWeekday : banner.closedWeekday,
-    };
-  }
-
-  if (day === 5 || day === 6) {
-    const closeAt = 3 * 60;
-    const open = minutes >= openAt || minutes < closeAt;
-    return {
-      open,
-      label: open ? banner.openWeekend : banner.closedWeekend,
-    };
-  }
-
-  return { open: false, label: banner.hoursShort };
-}
+import { isOpenNow } from "@/lib/utils/opening-hours";
 
 export function OpeningBanner() {
   const { dict } = useLocale();
-  const isClient = useSyncExternalStore(
-    subscribeNoop,
-    getClientSnapshot,
-    getServerSnapshot
-  );
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const interval = window.setInterval(() => setNow(new Date()), 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
 
   const status = useMemo(
-    () =>
-      isClient
-        ? isOpenNow(dict.banner)
-        : { open: false, label: dict.banner.hoursShort },
-    [isClient, dict.banner]
+    () => isOpenNow(dict.banner, now),
+    [dict.banner, now]
   );
 
   return (

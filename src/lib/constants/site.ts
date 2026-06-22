@@ -16,6 +16,7 @@ export const SITE = {
     city: "Waghäusel",
     area: "Waghäusel",
     country: "Deutschland",
+    timezone: "Europe/Berlin",
     hours: {
       weekdays: "Montag – Donnerstag: 12:00 – 01:00",
       sunday: "Sonntag: 12:00 – 01:00",
