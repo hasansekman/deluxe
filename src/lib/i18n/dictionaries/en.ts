@@ -1,0 +1,149 @@
+import type { Dictionary } from "../types";
+
+export const en: Dictionary = {
+  meta: {
+    homeTitle: "Home",
+    homeDescription:
+      "Deluxe Shisha Bar & Lounge in Waghäusel — premium shisha, handcrafted cocktails and a stylish lounge atmosphere.",
+    skipLink: "Skip to content",
+  },
+  nav: {
+    items: [
+      { label: "Home", href: "/#startseite", sectionId: "startseite" },
+      { label: "About", href: "/#ueber-uns", sectionId: "ueber-uns" },
+      { label: "Gallery", href: "/#galerie", sectionId: "galerie" },
+      { label: "Menu", href: "/#speisekarte", sectionId: "speisekarte" },
+      { label: "Contact", href: "/#kontakt", sectionId: "kontakt" },
+    ],
+    cta: { label: "Menu", href: "/#speisekarte" },
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    mainLabel: "Main navigation",
+    mobileLabel: "Mobile navigation",
+  },
+  banner: {
+    closedSunday: "Closed on Sundays",
+    openWeekday: "Open now · Mon–Thu until 01:00",
+    closedWeekday: "Closed · Mon–Thu 12:00–01:00",
+    openWeekend: "Open now · Fri–Sat until 03:00",
+    closedWeekend: "Closed · Fri–Sat 12:00–03:00",
+    hoursShort: "Mon–Thu 12:00–01:00 · Fri–Sat 12:00–03:00",
+  },
+  hero: {
+    location: "Waghäusel",
+    subtitle:
+      "Premium shisha and cocktails — stylish ambience late into the night.",
+    menu: "Menu",
+    reserve: "Reserve",
+  },
+  welcome: {
+    title: "Welcome",
+    paragraphs: [
+      "Deluxe Shisha Bar & Lounge in Waghäusel offers an exclusive experience in a stylish setting. Enjoy premium shisha flavours, handcrafted cocktails and a wide selection of drinks in our luxurious lounge.",
+      "Whether a relaxed evening with friends or a special occasion — find the perfect atmosphere to unwind and savour the moment.",
+    ],
+    stats: [
+      { value: "50+", label: "Shisha flavours" },
+      { value: "03:00", label: "Open Fri–Sat" },
+      { value: "100+", label: "Drinks & snacks" },
+    ],
+  },
+  highlights: {
+    items: [
+      {
+        id: "shisha",
+        index: "01",
+        title: "Premium Shisha",
+        description: "Elmas, Shisha Mix & Wookah — from €14",
+        href: "#speisekarte",
+      },
+      {
+        id: "cocktails",
+        index: "02",
+        title: "Handcrafted Cocktails",
+        description: "Classics & non-alcoholic signature drinks",
+        href: "#speisekarte",
+      },
+      {
+        id: "hours",
+        index: "03",
+        title: "Open until 03:00",
+        description: "Friday & Saturday — long lounge evenings",
+        href: "#kontakt",
+      },
+    ],
+    more: "More",
+  },
+  gallery: {
+    title: "Gallery",
+    subtitle: "A glimpse of our lounge — tap to enlarge.",
+    open: "Open",
+    close: "Close",
+    prev: "Previous image",
+    next: "Next image",
+    dialog: "Image view",
+    items: [
+      { imageKey: "gallery1", caption: "Premium Shisha" },
+      { imageKey: "gallery2", caption: "Bar & Drinks" },
+      { imageKey: "gallery3", caption: "Terrace" },
+      { imageKey: "gallery4", caption: "Lounge" },
+      { imageKey: "gallery5", caption: "Gaming Area" },
+    ],
+  },
+  menu: {
+    title: "Menu",
+    subtitle: "Premium shisha from €14 · Cocktails, drinks & snacks",
+    searchLabel: "Search menu",
+    searchPlaceholder: "Search — Mojito, Love 66, Doppelapfel…",
+    popular: "Popular",
+    popularHint: "Our classics — tap to jump to the item in the menu.",
+    popularOpen: "Open",
+    noResults: "No results for",
+    popularBadge: "Popular",
+    categoriesLabel: "Menu categories",
+  },
+  contact: {
+    title: "Contact & Directions",
+    subtitle: "Visit us in Waghäusel — we look forward to welcoming you.",
+    address: "Address",
+    contact: "Contact",
+    hours: "Opening hours",
+    call: "Call",
+    mapTitle: "Map — Deluxe Shisha Bar & Lounge",
+    directions: "Get directions",
+    whatsapp: "WhatsApp",
+    hoursWeekdays: "Monday – Thursday: 12:00 – 01:00",
+    hoursWeekend: "Friday – Saturday: 12:00 – 03:00",
+  },
+  footer: {
+    privacy: "Privacy",
+    terms: "Terms",
+    call: "Call",
+    rights: "All rights reserved.",
+  },
+  mobileBar: {
+    label: "Quick actions",
+    menu: "Menu",
+    call: "Call",
+    email: "Email",
+    route: "Route",
+  },
+  theme: {
+    toLight: "Switch to light theme",
+    toDark: "Switch to dark theme",
+  },
+  locale: {
+    switchToEn: "English",
+    switchToDe: "German",
+    current: "Language",
+  },
+  whatsapp: {
+    message: "Hello, I'd like to ask about a reservation.",
+  },
+  legal: {
+    privacyTitle: "Privacy Policy",
+    privacyBody: "Privacy policy — content to follow.",
+    termsTitle: "Terms & Conditions",
+    termsBody: "Terms and conditions — content to follow.",
+  },
+};

@@ -1,0 +1,150 @@
+import type { Dictionary } from "../types";
+
+export const de: Dictionary = {
+  meta: {
+    homeTitle: "Startseite",
+    homeDescription:
+      "Deluxe Shisha Bar & Lounge in Waghäusel — Premium Shisha, handgemachte Cocktails und stilvolles Ambiente.",
+    skipLink: "Zum Inhalt springen",
+  },
+  nav: {
+    items: [
+      { label: "Startseite", href: "/#startseite", sectionId: "startseite" },
+      { label: "Über uns", href: "/#ueber-uns", sectionId: "ueber-uns" },
+      { label: "Galerie", href: "/#galerie", sectionId: "galerie" },
+      { label: "Speisekarte", href: "/#speisekarte", sectionId: "speisekarte" },
+      { label: "Kontakt", href: "/#kontakt", sectionId: "kontakt" },
+    ],
+    cta: { label: "Speisekarte", href: "/#speisekarte" },
+    menuOpen: "Menü öffnen",
+    menuClose: "Menü schließen",
+    mainLabel: "Hauptnavigation",
+    mobileLabel: "Mobile Navigation",
+  },
+  banner: {
+    closedSunday: "Sonntag geschlossen",
+    openWeekday: "Jetzt geöffnet · Mo–Do bis 01:00",
+    closedWeekday: "Geschlossen · Mo–Do 12:00–01:00",
+    openWeekend: "Jetzt geöffnet · Fr–Sa bis 03:00",
+    closedWeekend: "Geschlossen · Fr–Sa 12:00–03:00",
+    hoursShort: "Mo–Do 12:00–01:00 · Fr–Sa 12:00–03:00",
+  },
+  hero: {
+    location: "Waghäusel",
+    subtitle:
+      "Premium Shisha und Cocktails — stilvolles Ambiente bis in die Nacht.",
+    menu: "Speisekarte",
+    reserve: "Reservieren",
+  },
+  welcome: {
+    title: "Willkommen",
+    paragraphs: [
+      "Die Deluxe Shisha Bar & Lounge in Waghäusel bietet Ihnen ein exklusives Erlebnis in stilvollem Ambiente. Genießen Sie erstklassige Shisha-Sorten, handgemachte Cocktails und eine vielfältige Getränkeauswahl in unserer luxuriösen Lounge.",
+      "Ob entspannter Abend mit Freunden oder besonderer Anlass – bei uns finden Sie die perfekte Atmosphäre zum Genießen und Verweilen.",
+    ],
+    stats: [
+      { value: "50+", label: "Shisha-Sorten" },
+      { value: "03:00", label: "Fr–Sa geöffnet" },
+      { value: "100+", label: "Getränke & Snacks" },
+    ],
+  },
+  highlights: {
+    items: [
+      {
+        id: "shisha",
+        index: "01",
+        title: "Premium Shisha",
+        description: "Elmas, Shisha Mix & Wookah — ab 14 €",
+        href: "#speisekarte",
+      },
+      {
+        id: "cocktails",
+        index: "02",
+        title: "Handgemachte Cocktails",
+        description: "Klassiker & alkoholfreie Signature-Drinks",
+        href: "#speisekarte",
+      },
+      {
+        id: "hours",
+        index: "03",
+        title: "Bis 03:00 geöffnet",
+        description: "Freitag & Samstag — lange Lounge-Abende",
+        href: "#kontakt",
+      },
+    ],
+    more: "Mehr",
+  },
+  gallery: {
+    title: "Galerie",
+    subtitle: "Ein Blick in unsere Lounge — tippen zum Vergrößern.",
+    open: "Öffnen",
+    close: "Schließen",
+    prev: "Vorheriges Bild",
+    next: "Nächstes Bild",
+    dialog: "Bildansicht",
+    items: [
+      { imageKey: "gallery1", caption: "Premium Shisha" },
+      { imageKey: "gallery2", caption: "Bar & Getränke" },
+      { imageKey: "gallery3", caption: "Terrasse" },
+      { imageKey: "gallery4", caption: "Lounge" },
+      { imageKey: "gallery5", caption: "Gaming-Bereich" },
+    ],
+  },
+  menu: {
+    title: "Speisekarte",
+    subtitle: "Premium Shisha ab 14 € · Cocktails, Getränke & Snacks",
+    searchLabel: "Menü durchsuchen",
+    searchPlaceholder: "Suchen — Mojito, Love 66, Doppelapfel…",
+    popular: "Beliebt",
+    popularHint:
+      "Unsere Klassiker — tippen, um direkt in der Karte zu springen.",
+    popularOpen: "Öffnen",
+    noResults: "Keine Ergebnisse für",
+    popularBadge: "Beliebt",
+    categoriesLabel: "Menükategorien",
+  },
+  contact: {
+    title: "Kontakt & Anfahrt",
+    subtitle: "Besuchen Sie uns in Waghäusel — wir freuen uns auf Ihren Besuch.",
+    address: "Adresse",
+    contact: "Kontakt",
+    hours: "Öffnungszeiten",
+    call: "Anrufen",
+    mapTitle: "Karte — Deluxe Shisha Bar & Lounge",
+    directions: "Route starten",
+    whatsapp: "WhatsApp",
+    hoursWeekdays: "Montag – Donnerstag: 12:00 – 01:00",
+    hoursWeekend: "Freitag – Samstag: 12:00 – 03:00",
+  },
+  footer: {
+    privacy: "Datenschutz",
+    terms: "AGB",
+    call: "Anrufen",
+    rights: "Alle Rechte vorbehalten.",
+  },
+  mobileBar: {
+    label: "Schnellaktionen",
+    menu: "Speisekarte",
+    call: "Anrufen",
+    email: "E-Mail",
+    route: "Route",
+  },
+  theme: {
+    toLight: "Helles Design aktivieren",
+    toDark: "Dunkles Design aktivieren",
+  },
+  locale: {
+    switchToEn: "Englisch",
+    switchToDe: "Deutsch",
+    current: "Sprache",
+  },
+  whatsapp: {
+    message: "Hallo, ich hätte eine Frage zur Reservierung.",
+  },
+  legal: {
+    privacyTitle: "Datenschutz",
+    privacyBody: "Datenschutzerklärung — Inhalt folgt.",
+    termsTitle: "AGB",
+    termsBody: "Allgemeine Geschäftsbedingungen — Inhalt folgt.",
+  },
+};

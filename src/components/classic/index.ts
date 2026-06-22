@@ -1,0 +1,15 @@
+export { ClassicHeader } from "./ClassicHeader";
+export { ClassicFooter } from "./ClassicFooter";
+export { HeroSection } from "./HeroSection";
+export { HighlightsSection } from "./HighlightsSection";
+export { WelcomeSection } from "./WelcomeSection";
+export { GallerySection } from "./GallerySection";
+export { MenuSection } from "./MenuSection";
+export { ContactSection } from "./ContactSection";
+export { OpeningBanner } from "./OpeningBanner";
+export { WhatsAppButton } from "./WhatsAppButton";
+export { MobileActionBar } from "./MobileActionBar";
+export { SkipLink } from "./SkipLink";
+export { LocaleSwitcher } from "./LocaleSwitcher";
+export { ThemeToggle } from "./ThemeToggle";
+export { Logo } from "./Logo";
