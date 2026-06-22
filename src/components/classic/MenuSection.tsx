@@ -303,10 +303,11 @@ export function MenuSection() {
 
               <div className="min-w-0">
                 <div
-                  className="flex gap-2 overflow-x-auto pb-2 lg:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  className="menu-mobile-tabs sticky top-[72px] z-30 -mx-[var(--page-margin)] mb-4 border-b border-border/70 bg-bg/92 px-[var(--page-margin)] py-2 backdrop-blur-md lg:hidden"
                   role="tablist"
                   aria-label={dict.menu.categoriesLabel}
                 >
+                  <div className="flex gap-2 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {menuTabs.map((item) => (
                       <button
                         key={item.id}
@@ -323,6 +324,7 @@ export function MenuSection() {
                         {item.label}
                       </button>
                   ))}
+                  </div>
                 </div>
 
                 {tab && (

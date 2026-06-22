@@ -7,16 +7,31 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: SITE.shortName,
     description: SITE.tagline,
     start_url: "/",
+    scope: "/",
     display: "standalone",
+    orientation: "portrait-primary",
     background_color: "#161618",
     theme_color: "#d4c5a8",
     lang: "de-DE",
+    categories: ["food", "lifestyle"],
     icons: [
       {
         src: IMAGES.logo,
-        sizes: "1024x1024",
+        sizes: "192x192",
         type: "image/png",
         purpose: "any",
+      },
+      {
+        src: IMAGES.logo,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: IMAGES.logo,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
   };

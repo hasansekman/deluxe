@@ -243,6 +243,26 @@ body {
   border-color: color-mix(in srgb, var(--accent) 10%, var(--border));
 }
 
+.mobile-bar-link {
+  color: var(--text-muted);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.mobile-bar-link-active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.mobile-bar-link-active span:last-child {
+  color: var(--accent);
+}
+
+.menu-mobile-tabs {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
 [data-theme="light"] .footer-glow {
   opacity: 0.55;
 }
